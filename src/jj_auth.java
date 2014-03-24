@@ -2,17 +2,12 @@
  * jj_auth.java
  *
  * Created on October 10, 2005, 11:38 AM
- *
- * To change this template, choose Tools | Options and locate the template under
- * the Source Creation and Management node. Right-click the template and choose
- * Open. You can then make changes to the template in the Source Editor.
  */
 
 package java_jjclient;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.net.*;
-//import javax.net.ssl.*;
 import java.io.*;
 
 /**
