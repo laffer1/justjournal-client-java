@@ -90,8 +90,7 @@ public class Entry {
             strAllow = "unchecked";
 
         try {
-            // construct the POST request data
-            final String type = "application/x-www-form-urlencoded";
+
             String data = "";
             data += "user=" + URLEncoder.encode(username, "UTF-8");
             data += "&pass=" + URLEncoder.encode(password, "UTF-8");
@@ -106,16 +105,9 @@ public class Entry {
             data += "&subject=" + URLEncoder.encode(subject, "UTF-8");
             data += "&body=" + URLEncoder.encode(body, "UTF-8");
 
-            // open connection
-            final URL jj = new URL("https://www.justjournal.com/updateJournal");
-            final HttpsURLConnection conn = (HttpsURLConnection) jj.openConnection();
-            // set requesting agent, and POST
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("User-Agent", USER_AGENT);
-            conn.setRequestProperty("Content-Type", type);
+            final HttpsURLConnection conn = HttpUtils.getSSLConnection("https://www.justjournal.com/updateJournal");
+            conn.setRequestProperty("Content-Type", HttpUtils.FORM_URLENCODED);
             conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
 
             final OutputStreamWriter writer =
                     new OutputStreamWriter(conn.getOutputStream());

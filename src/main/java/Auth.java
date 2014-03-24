@@ -13,6 +13,8 @@ import java.io.*;
  */
 public class Auth {
 
+    private static final String JJ_LOGIN_OK = "JJ.LOGIN.OK";
+    private static final String FORM_URLENCODED = "application/x-www-form-urlencoded";
     private String userName;
     private String passWord;
 
@@ -37,32 +39,27 @@ public class Auth {
         //  servlet
         try {
             // sending the post request
-            String type = "application/x-www-form-urlencoded";
+            final String type = FORM_URLENCODED;
             String data = URLEncoder.encode("username", "US-ASCII") + "=" +
                     URLEncoder.encode(userName, "US-ASCII");
             data += "&" + URLEncoder.encode("password", "US-ASCII") + "=" +
                     URLEncoder.encode(passWord, "US-ASCII");
             data += "&" + URLEncoder.encode("password_hash", "US-ASCII") + "=" +
                     URLEncoder.encode("", "US-ASCII");
-            URL url = new URL("http://www.justjournal.com/loginAccount");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            // set user-agent header in POST request
-            conn.setRequestProperty("User-Agent", "JustJournal/Java");
+            HttpURLConnection conn = HttpUtils.getConnection("http://www.justjournal.com/loginAccount");
             conn.setRequestProperty("Content-Type", type);
 
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            OutputStreamWriter writer =
+            final OutputStreamWriter writer =
                     new OutputStreamWriter(conn.getOutputStream());
 
             writer.write(data);
             writer.flush();
             writer.close();
             // getting the response
-            BufferedReader input = new BufferedReader(new InputStreamReader
+            final BufferedReader input = new BufferedReader(new InputStreamReader
                     (conn.getInputStream()));
-            char[] returnCode = new char[50];
+            final char[] returnCode = new char[50];
             int i = 0;
             int tempChar = input.read();
             while (tempChar != -1) {
@@ -75,7 +72,7 @@ public class Auth {
             String code = new String(returnCode);
             code = code.trim();
 
-            if (code.equals("JJ.LOGIN.OK"))
+            if (code.equals(JJ_LOGIN_OK))
                 return true;
 
             System.out.println(code);
@@ -99,23 +96,17 @@ public class Auth {
             String data = "username=" + userName;
             data += "&password=" + passWord;
             data += "&password_hash=";
-            URL jj = new URL("https://www.justjournal.com/loginAccount");
-            HttpsURLConnection sslConn = (HttpsURLConnection) jj.openConnection();
-            sslConn.setRequestProperty("User-Agent", "JustJournal");
-
-            sslConn.setRequestMethod("POST");
-            sslConn.setDoOutput(true);
-            sslConn.setDoInput(true);
-            OutputStreamWriter writer =
+            final HttpsURLConnection sslConn = HttpUtils.getSSLConnection("https://www.justjournal.com/loginAccount");
+            final OutputStreamWriter writer =
                     new OutputStreamWriter(sslConn.getOutputStream());
 
             writer.write(data);
             writer.flush();
             writer.close();
             // getting the response
-            BufferedReader input = new BufferedReader(new InputStreamReader
+            final BufferedReader input = new BufferedReader(new InputStreamReader
                     (sslConn.getInputStream()));
-            char[] returnCode = new char[50];
+            final char[] returnCode = new char[50];
             int i = 0;
             int tempChar = input.read();
             while (tempChar != -1) {
@@ -128,7 +119,7 @@ public class Auth {
             code = code.trim();
             input.close();
 
-            if (code.equals("JJ.LOGIN.OK"))
+            if (code.equals(JJ_LOGIN_OK))
                 return true;
 
             System.out.println(code);
