@@ -4,8 +4,6 @@
  * Created on October 17, 2005, 9:33 AM
  */
 
-package java_jjclient;
-
 import javax.net.ssl.HttpsURLConnection;
 import java.net.URL;
 import java.util.Date;
@@ -17,8 +15,10 @@ import java.net.URLEncoder;
 /**
  * @author caryn
  */
-public class jjUpdate {
+public class Entry {
 
+    public static final String USER_AGENT = "JustJournal";
+    public static final String JJ_JOURNAL_UPDATE_OK = "JJ.JOURNAL.UPDATE.OK";
     // account information
     private String username;
     private String password;
@@ -29,7 +29,7 @@ public class jjUpdate {
      * @param jjUsername
      * @param jjPassword
      */
-    public jjUpdate(String jjUsername, String jjPassword) {
+    public Entry(final String jjUsername, final String jjPassword) {
         username = jjUsername;
         password = jjPassword;
     }
@@ -48,11 +48,10 @@ public class jjUpdate {
      * @param allowComment
      * @return true if update succeeded.
      */
-    public boolean update(String subject, String body, String mood,
-                          String location, String security, String music,
-                          boolean format, boolean email, boolean allowComment) {
-        Date today = new Date();
-        String strDate = today.toString();
+    public boolean update(final String subject, final String body, final String mood,
+                          final String location, final String security, final String music,
+                          final boolean format, final boolean email, final boolean allowComment) {
+
         // location, mood, security are all int values
         // aformat, subject, body, allow_comments, email_comments (checked, unchecked) are strings
 
@@ -92,7 +91,7 @@ public class jjUpdate {
 
         try {
             // construct the POST request data
-            String type = "application/x-www-form-urlencoded";
+            final String type = "application/x-www-form-urlencoded";
             String data = "";
             data += "user=" + URLEncoder.encode(username, "UTF-8");
             data += "&pass=" + URLEncoder.encode(password, "UTF-8");
@@ -108,27 +107,27 @@ public class jjUpdate {
             data += "&body=" + URLEncoder.encode(body, "UTF-8");
 
             // open connection
-            URL jj = new URL("https://www.justjournal.com/updateJournal");
-            HttpsURLConnection conn = (HttpsURLConnection) jj.openConnection();
+            final URL jj = new URL("https://www.justjournal.com/updateJournal");
+            final HttpsURLConnection conn = (HttpsURLConnection) jj.openConnection();
             // set requesting agent, and POST
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("User-Agent", "JustJournal");
+            conn.setRequestProperty("User-Agent", USER_AGENT);
             conn.setRequestProperty("Content-Type", type);
-            conn.setRequestProperty("Content-Length", new Integer(data.length()).toString());
+            conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
             conn.setDoOutput(true);
             conn.setDoInput(true);
 
-            OutputStreamWriter writer =
+            final OutputStreamWriter writer =
                     new OutputStreamWriter(conn.getOutputStream());
 
             writer.write(data);
             writer.flush();
             writer.close();
             // getting the response
-            BufferedReader input = new BufferedReader(new InputStreamReader
+            final BufferedReader input = new BufferedReader(new InputStreamReader
                     (conn.getInputStream()));
             int response = input.read();
-            char[] returnCode = new char[50];
+            final char[] returnCode = new char[50];
             int i = 0;
             // for debugging
             while (response != -1) {
@@ -140,10 +139,10 @@ public class jjUpdate {
             String code = new String(returnCode);
             code = code.trim();
 
-            if (code.compareTo("JJ.JOURNAL.UPDATE.OK") == 0)
+            if (code.compareTo(JJ_JOURNAL_UPDATE_OK) == 0)
                 return true;
             System.out.println("JJUpdate(): " + code);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             System.err.println(e.getMessage());
         }
 

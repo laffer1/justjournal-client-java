@@ -8,17 +8,15 @@
  * Open. You can then make changes to the template in the Source Editor.
  */
 
-package java_jjclient;
-
 /**
  * @author caryn
  */
-public class jj_display {
+public class Display {
 
     /**
      * Constructor
      */
-    public jj_display() {
+    public Display() {
     }
 
 }

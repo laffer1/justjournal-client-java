@@ -1,5 +1,3 @@
-package java_jjclient;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -8,7 +6,7 @@ import java.awt.*;
 /**
  * @author Caryn Holt Created by IntelliJ IDEA. User: caryn Date: Oct 31, 2005 Time: 11:18:49 AM
  */
-public class jjGUI implements ActionListener {
+public class FormGui implements ActionListener {
 
     private JFrame frame;
     private JPanel loginPanel;
@@ -29,7 +27,7 @@ public class jjGUI implements ActionListener {
     /**
      * Constructor
      */
-    public jjGUI() {
+    public FormGui() {
         initJFrame();
     }
 
@@ -261,7 +259,7 @@ public class jjGUI implements ActionListener {
         //noinspection deprecation
         String pword = password.getText();
 
-        jj_auth jjLogin = new jj_auth(uname, pword);
+        Auth jjLogin = new Auth(uname, pword);
 
         boolean result;
 
@@ -310,7 +308,7 @@ public class jjGUI implements ActionListener {
     private boolean update() {
         //noinspection deprecation
         String strPassword = password.getText();
-        jjUpdate updateJJ = new jjUpdate(username.getText(), strPassword);
+        Entry updateJJ = new Entry(username.getText(), strPassword);
         boolean result = updateJJ.update(subject.getText(), body.getText(),
                 (String) mood.getSelectedItem(), (String) location.getSelectedItem(),
                 (String) security.getSelectedItem(), music.getText(),

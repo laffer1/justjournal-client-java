@@ -1,9 +1,3 @@
-package java_jjclient;
-
-import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 /**
  * JJClient Main
  * User: caryn Date: Oct 17, 2005 Time: 7:15:24 PM
@@ -16,7 +10,7 @@ public class JJClient {
      * @param args
      */
     public static void main(String args[]) {
-        jjGUI gui = new jjGUI();
+        FormGui gui = new FormGui();
     }
 
 }

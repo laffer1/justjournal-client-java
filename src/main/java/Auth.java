@@ -4,8 +4,6 @@
  * Created on October 10, 2005, 11:38 AM
  */
 
-package java_jjclient;
-
 import javax.net.ssl.HttpsURLConnection;
 import java.net.*;
 import java.io.*;
@@ -13,7 +11,7 @@ import java.io.*;
 /**
  * @author caryn
  */
-public class jj_auth {
+public class Auth {
 
     private String userName;
     private String passWord;
@@ -24,7 +22,7 @@ public class jj_auth {
      * @param username
      * @param password
      */
-    public jj_auth(String username, String password) {
+    public Auth(final String username, final String password) {
         userName = username;
         passWord = password;
     }
