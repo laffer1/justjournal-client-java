@@ -6,7 +6,7 @@
 
     <groupId>justjournal-client-java</groupId>
     <artifactId>javajj</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <build>
         <plugins>
@@ -18,11 +18,19 @@
                     <archive>
                         <manifest>
                             <mainClass>jjClient</mainClass>
-                            <url>https://github.com/laffer1/justjournal-client-java</url>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-compiler-plugin</artifactId>
+                   <version>3.3</version>
+                   <configuration>
+                     <source>1.6</source>
+                     <target>1.6</target>
+                   </configuration>
+                 </plugin>
         </plugins>
     </build>
 
@@ -30,7 +38,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.1</version>
+            <version>4.11</version>
             <scope>test</scope>
           </dependency>
     </dependencies>

@@ -25,6 +25,8 @@
         <module name="justjournal-client-java" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="justjournal-client-java" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
 </project>
-
