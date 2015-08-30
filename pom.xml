@@ -17,7 +17,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>jjClient</mainClass>
+                            <mainClass>JJClient</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
