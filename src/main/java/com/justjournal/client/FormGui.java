@@ -40,21 +40,21 @@ public class FormGui implements ActionListener {
         frame = new JFrame("JustJournal Client");
 
         // add menus
-        JMenuBar jjMenuBar = new JMenuBar();
+        final JMenuBar jjMenuBar = new JMenuBar();
 
-        JMenu jjMenu = new JMenu("JustJournal");
+        final JMenu jjMenu = new JMenu("JustJournal");
 
-        JMenuItem loginMenu = new JMenuItem("Login");
+        final JMenuItem loginMenu = new JMenuItem("Login");
         loginMenu.setActionCommand("login");
         loginMenu.addActionListener(this);
 
-        JMenuItem updateMenu = new JMenuItem("Update Journal");
+        final JMenuItem updateMenu = new JMenuItem("Update Journal");
         updateMenu.setActionCommand("update");
         updateMenu.addActionListener(this);
 
-        JMenuItem displayFriends = new JMenuItem("com.justjournal.client.Display Friends");
+        final JMenuItem displayFriends = new JMenuItem("com.justjournal.client.Display Friends");
 
-        JMenuItem quitMenu = new JMenuItem("Quit");
+        final JMenuItem quitMenu = new JMenuItem("Quit");
         quitMenu.setActionCommand("quit");
         quitMenu.addActionListener(this);
 
@@ -86,12 +86,12 @@ public class FormGui implements ActionListener {
         GridBagConstraints c = new GridBagConstraints();
 
         // initialize componenets
-        JLabel usernameLabel = new JLabel("Username:");
+        final JLabel usernameLabel = new JLabel("Username:");
         c.gridx = 0;
         c.gridy = 0;
         loginPanel.add(usernameLabel, c);
 
-        JLabel passwordLabel = new JLabel("Password:");
+        final JLabel passwordLabel = new JLabel("Password:");
         c.gridx = 0;
         c.gridy = 1;
         loginPanel.add(passwordLabel, c);
@@ -113,7 +113,7 @@ public class FormGui implements ActionListener {
         c.gridy = 2;
         loginPanel.add(ssl, c);
 
-        JButton loginButton = new JButton("Login");
+        final JButton loginButton = new JButton("Login");
         // event for login button
         loginButton.setActionCommand("login");
         loginButton.addActionListener(this);
@@ -121,7 +121,7 @@ public class FormGui implements ActionListener {
         c.gridy = 3;
         loginPanel.add(loginButton, c);
 
-        JButton clearButton = new JButton("Clear");
+        final JButton clearButton = new JButton("Clear");
         clearButton.setActionCommand("clear");
         clearButton.addActionListener(this);
         c.gridx = 1;
@@ -139,31 +139,31 @@ public class FormGui implements ActionListener {
         loginPanel.setVisible(false);
 
         // init panel
-        JPanel updatePanel = new JPanel(new GridBagLayout());
+        final JPanel updatePanel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
         // init and add components
-        JLabel subjectLabel = new JLabel("Subject:");
+        final JLabel subjectLabel = new JLabel("Subject:");
         c.gridy = 0;
         c.gridx = 0;
         updatePanel.add(subjectLabel, c);
 
-        JLabel bodyLabel = new JLabel("Body:");
+        final JLabel bodyLabel = new JLabel("Body:");
         c.gridy = 1;
         c.gridx = 0;
         updatePanel.add(bodyLabel, c);
 
-        JLabel musicLabel = new JLabel("Music:");
+        final JLabel musicLabel = new JLabel("Music:");
         c.gridy = 2;
         c.gridx = 0;
         updatePanel.add(musicLabel, c);
 
-        JLabel locationLabel = new JLabel("Location:");
+        final JLabel locationLabel = new JLabel("Location:");
         c.gridy = 3;
         c.gridx = 0;
         updatePanel.add(locationLabel, c);
 
-        JLabel moodLabel = new JLabel("Mood:");
+        final JLabel moodLabel = new JLabel("Mood:");
         c.gridy = 4;
         c.gridx = 0;
         updatePanel.add(moodLabel, c);
@@ -188,26 +188,26 @@ public class FormGui implements ActionListener {
         c.insets = new Insets(5, 5, 5, 5);
         updatePanel.add(music, c);
 
-        String[] locationValue = {"Home", "School", "Work", "Other"};
+        final String[] locationValue = {"Home", "School", "Work", "Other"};
         location = new JComboBox(locationValue);
         c.gridy = 3;
         c.gridx = 1;
         c.insets = new Insets(5, 5, 5, 5);
         updatePanel.add(location, c);
 
-        String[] moodValue = moodList();
+        final String[] moodValue = moodList();
         mood = new JComboBox(moodValue);
         c.gridy = 4;
         c.gridx = 1;
         c.insets = new Insets(5, 5, 5, 5);
         updatePanel.add(mood, c);
 
-        JLabel securityLabel = new JLabel("Security:");
+        final JLabel securityLabel = new JLabel("Security:");
         c.gridy = 5;
         c.gridx = 0;
         updatePanel.add(securityLabel, c);
 
-        String[] securityValues = {"Public", "Friends Only", "Private"};
+        final String[] securityValues = {"Public", "Friends Only", "Private"};
         security = new JComboBox(securityValues);
         c.gridy = 5;
         c.gridx = 1;
@@ -231,14 +231,14 @@ public class FormGui implements ActionListener {
         c.gridx = 0;
         updatePanel.add(autoFormat, c);
 
-        JButton updateButton = new JButton("Update");
+        final JButton updateButton = new JButton("Update");
         updateButton.setActionCommand("update");
         updateButton.addActionListener(this);
         c.gridy = 9;
         c.gridx = 0;
         updatePanel.add(updateButton, c);
 
-        JButton clearButton = new JButton("Clear");
+        final JButton clearButton = new JButton("Clear");
         clearButton.setActionCommand("clear update");
         clearButton.addActionListener(this);
         c.gridy = 9;
@@ -257,13 +257,9 @@ public class FormGui implements ActionListener {
      * @return true if login was successful
      */
     private boolean login() {
-        String uname = username.getText();
-        //noinspection deprecation
-        String pword = password.getText();
+        final Auth jjLogin = new Auth(username.getText(), password.getText());
 
-        Auth jjLogin = new Auth(uname, pword);
-
-        boolean result;
+        final boolean result;
 
         // check if ssl is enabled
         if (ssl.isSelected())
@@ -309,13 +305,11 @@ public class FormGui implements ActionListener {
      */
     private boolean update() {
         //noinspection deprecation
-        String strPassword = password.getText();
-        Entry updateJJ = new Entry(username.getText(), strPassword);
-        boolean result = updateJJ.update(subject.getText(), body.getText(),
+        final Entry updateJJ = new Entry(username.getText(), password.getText());
+        return updateJJ.update(subject.getText(), body.getText(),
                 (String) mood.getSelectedItem(), (String) location.getSelectedItem(),
                 (String) security.getSelectedItem(), music.getText(),
                 autoFormat.isSelected(), emailComments.isSelected(), allowComments.isSelected());
-        return result;
     }
 
     /**
@@ -324,8 +318,7 @@ public class FormGui implements ActionListener {
      * @return String array of mood list
      */
     private String[] moodList() {
-        String[] moods = {"happy", "sad"};
-        return moods;
+        return new String[]{"happy", "sad"};
     }
 
 }

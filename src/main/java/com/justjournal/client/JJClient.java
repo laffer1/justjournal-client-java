@@ -11,8 +11,8 @@ public class JJClient {
      *
      * @param args
      */
-    public static void main(String args[]) {
-        FormGui gui = new FormGui();
+    public static void main(final String args[]) {
+        final FormGui gui = new FormGui();
     }
 
 }

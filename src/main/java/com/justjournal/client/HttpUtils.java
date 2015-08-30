@@ -12,13 +12,15 @@ public class HttpUtils {
 
     public static final String FORM_URLENCODED = "application/x-www-form-urlencoded";
     private static final String USER_AGENT = "JustJournal";
+    public static final String HTTP_POST = "POST";
+    public static final String USER_AGENT_HEADER = "User-Agent";
 
     public static HttpsURLConnection getSSLConnection(final String url) throws IOException {
         final URL jj = new URL(url);
         final HttpsURLConnection sslConn = (HttpsURLConnection) jj.openConnection();
-        sslConn.setRequestProperty("User-Agent", USER_AGENT);
+        sslConn.setRequestProperty(USER_AGENT_HEADER, USER_AGENT);
 
-        sslConn.setRequestMethod("POST");
+        sslConn.setRequestMethod(HTTP_POST);
         sslConn.setDoOutput(true);
         sslConn.setDoInput(true);
         return sslConn;
@@ -29,9 +31,9 @@ public class HttpUtils {
         final HttpURLConnection conn = (HttpURLConnection) jj.openConnection();
 
         // set user-agent header in POST request
-        conn.setRequestProperty("User-Agent", USER_AGENT);
+        conn.setRequestProperty(USER_AGENT_HEADER, USER_AGENT);
 
-        conn.setRequestMethod("POST");
+        conn.setRequestMethod(HTTP_POST);
         conn.setDoOutput(true);
         conn.setDoInput(true);
         return conn;

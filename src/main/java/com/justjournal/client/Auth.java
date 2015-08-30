@@ -14,15 +14,14 @@ import java.io.*;
 public class Auth {
 
     private static final String JJ_LOGIN_OK = "JJ.LOGIN.OK";
-    private static final String FORM_URLENCODED = "application/x-www-form-urlencoded";
     private String userName;
     private String passWord;
 
     /**
      * Creates instance of jj_auth
      *
-     * @param username
-     * @param password
+     * @param username justjournal.com username
+     * @param password justjournal.com password
      */
     public Auth(final String username, final String password) {
         userName = username;
@@ -39,7 +38,7 @@ public class Auth {
         //  servlet
         try {
             // sending the post request
-            final String type = FORM_URLENCODED;
+            final String type = HttpUtils.FORM_URLENCODED;
             String data = URLEncoder.encode("username", "US-ASCII") + "=" +
                     URLEncoder.encode(userName, "US-ASCII");
             data += "&" + URLEncoder.encode("password", "US-ASCII") + "=" +
@@ -47,7 +46,7 @@ public class Auth {
             data += "&" + URLEncoder.encode("password_hash", "US-ASCII") + "=" +
                     URLEncoder.encode("", "US-ASCII");
 
-            HttpURLConnection conn = HttpUtils.getConnection("http://www.justjournal.com/loginAccount");
+            final HttpURLConnection conn = HttpUtils.getConnection("http://www.justjournal.com/loginAccount");
             conn.setRequestProperty("Content-Type", type);
 
             final OutputStreamWriter writer =
