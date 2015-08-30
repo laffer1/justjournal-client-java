@@ -1,3 +1,5 @@
+package com.justjournal.client;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -50,7 +52,7 @@ public class FormGui implements ActionListener {
         updateMenu.setActionCommand("update");
         updateMenu.addActionListener(this);
 
-        JMenuItem displayFriends = new JMenuItem("Display Friends");
+        JMenuItem displayFriends = new JMenuItem("com.justjournal.client.Display Friends");
 
         JMenuItem quitMenu = new JMenuItem("Quit");
         quitMenu.setActionCommand("quit");

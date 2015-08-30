@@ -1,3 +1,6 @@
+package com.justjournal.client;
+
+import com.justjournal.client.Auth;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;

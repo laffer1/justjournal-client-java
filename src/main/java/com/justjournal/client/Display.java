@@ -1,4 +1,4 @@
-/*
+package com.justjournal.client;/*
  * jj_display.java
  *
  * Created on October 10, 2005, 11:39 AM

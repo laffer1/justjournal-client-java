@@ -17,7 +17,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>JJClient</mainClass>
+                            <mainClass>com.justjournal.client.JJClient</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

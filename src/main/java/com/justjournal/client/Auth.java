@@ -1,4 +1,4 @@
-/*
+package com.justjournal.client;/*
  * jj_auth.java
  *
  * Created on October 10, 2005, 11:38 AM

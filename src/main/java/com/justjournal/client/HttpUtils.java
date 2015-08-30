@@ -1,3 +1,5 @@
+package com.justjournal.client;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.net.HttpURLConnection;

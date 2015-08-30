@@ -1,12 +1,10 @@
-/*
+package com.justjournal.client;/*
  * jjUpdate.java
  *
  * Created on October 17, 2005, 9:33 AM
  */
 
 import javax.net.ssl.HttpsURLConnection;
-import java.net.URL;
-import java.util.Date;
 import java.io.OutputStreamWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
