@@ -14,6 +14,7 @@ import java.io.*;
 public class Auth {
 
     private static final String JJ_LOGIN_OK = "JJ.LOGIN.OK";
+    private static final String ASCII = "US-ASCII";
     private String userName;
     private String passWord;
 
@@ -39,11 +40,11 @@ public class Auth {
         try {
             // sending the post request
             final String type = HttpUtils.FORM_URLENCODED;
-            String data = URLEncoder.encode("username", "US-ASCII") + "=" +
+            String data = URLEncoder.encode("username", ASCII) + "=" +
                     URLEncoder.encode(userName, "US-ASCII");
-            data += "&" + URLEncoder.encode("password", "US-ASCII") + "=" +
+            data += "&" + URLEncoder.encode("password", ASCII) + "=" +
                     URLEncoder.encode(passWord, "US-ASCII");
-            data += "&" + URLEncoder.encode("password_hash", "US-ASCII") + "=" +
+            data += "&" + URLEncoder.encode("password_hash", ASCII) + "=" +
                     URLEncoder.encode("", "US-ASCII");
 
             final HttpURLConnection conn = HttpUtils.getConnection("http://www.justjournal.com/loginAccount");
