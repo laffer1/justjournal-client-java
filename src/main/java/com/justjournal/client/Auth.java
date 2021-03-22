@@ -74,10 +74,8 @@ public class Auth {
 
             if (code.equals(JJ_LOGIN_OK))
                 return true;
-
-            System.out.println(code);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println("Failed to check account with code: " + code + ", error: " + e.getMessage());
         }
         // if the function gets this far, an error resulted
         // for GUI testing return true
