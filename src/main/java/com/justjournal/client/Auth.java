@@ -41,11 +41,11 @@ public class Auth {
             // sending the post request
             final String type = HttpUtils.FORM_URLENCODED;
             String data = URLEncoder.encode("username", ASCII) + "=" +
-                    URLEncoder.encode(userName, "US-ASCII");
+                    URLEncoder.encode(userName, ASCII);
             data += "&" + URLEncoder.encode("password", ASCII) + "=" +
-                    URLEncoder.encode(passWord, "US-ASCII");
+                    URLEncoder.encode(passWord, ASCII);
             data += "&" + URLEncoder.encode("password_hash", ASCII) + "=" +
-                    URLEncoder.encode("", "US-ASCII");
+                    URLEncoder.encode("", ASCII);
 
             final HttpURLConnection conn = HttpUtils.getConnection("http://www.justjournal.com/loginAccount");
             conn.setRequestProperty("Content-Type", type);
