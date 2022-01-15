@@ -15,6 +15,9 @@ public class HttpUtils {
     public static final String HTTP_POST = "POST";
     public static final String USER_AGENT_HEADER = "User-Agent";
 
+    private HttpUtils() {
+    }
+
     public static HttpsURLConnection getSSLConnection(final String url) throws IOException {
         final URL jj = new URL(url);
         final HttpsURLConnection sslConn = (HttpsURLConnection) jj.openConnection();
