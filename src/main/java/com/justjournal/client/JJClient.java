@@ -9,10 +9,10 @@ public class JJClient {
     /**
      * Main function
      *
-     * @param args
+     * @param args app arguments
      */
-    public static void main(final String args[]) {
-        final FormGui gui = new FormGui();
+    public static void main(final String[] args) {
+        new FormGui();
     }
 
 }
